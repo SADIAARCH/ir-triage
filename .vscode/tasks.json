@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Python: create virtual environment",
+      "type": "process",
+      "command": "python3",
+      "args": ["-m", "venv", ".venv"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: install dependencies",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Triage: run dashboard (mock mode)",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "streamlit", "run", "app.py"],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": { "USE_HEURISTIC": "1", "USE_MOCK_BEDROCK": "1" }
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Triage: CLI smoke run (mock mode)",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "triage.pipeline", "40"],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": { "USE_HEURISTIC": "1", "USE_MOCK_BEDROCK": "1" }
+      },
+      "problemMatcher": []
+    }
+  ]
+}

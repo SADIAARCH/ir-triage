@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Streamlit dashboard (mock mode)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "streamlit",
+      "args": ["run", "app.py"],
+      "cwd": "${workspaceFolder}",
+      "env": { "USE_HEURISTIC": "1", "USE_MOCK_BEDROCK": "1" },
+      "justMyCode": true
+    },
+    {
+      "name": "Triage pipeline (mock mode)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "triage.pipeline",
+      "args": ["40"],
+      "cwd": "${workspaceFolder}",
+      "env": { "USE_HEURISTIC": "1", "USE_MOCK_BEDROCK": "1" },
+      "justMyCode": true
+    }
+  ]
+}
